@@ -15,7 +15,5 @@ run() ->
     emysql:execute(hello_pool,
         <<"INSERT INTO hello_table SET hello_text = 'Hello World!'">>),
 
-    Result = emysql:execute(hello_pool,
-        <<"select hello_text from hello_table">>),
-
-    log4erl:debug("~n~p~n", [Result]).
+    emysql:execute(hello_pool,
+        <<"select hello_text from hello_table">>).
