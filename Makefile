@@ -1,4 +1,4 @@
-LIBDIR=$(shell erl -eval 'log4erl:debug("~s~n", [code:lib_dir()])' -s init stop -noshell)
+LIBDIR=$(shell erl -eval 'io:format("~s~n", [code:lib_dir()])' -s init stop -noshell)
 VERSION=0.4.1
 PKGNAME=emysql
 APP_NAME=emysql
