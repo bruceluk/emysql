@@ -122,7 +122,7 @@ handle_call(select_all, _From, State) ->
 			{'EXIT',mysql_timeout} ->
 				ok;
 			Err ->
-				log4erl:debug("~p error: ~p~n", [TableName, Err])
+				ok%log4erl:debug("~p error: ~p~n", [TableName, Err])
 		end
 	end),
 	{reply, ok, State};

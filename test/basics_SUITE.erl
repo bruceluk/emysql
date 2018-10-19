@@ -252,7 +252,7 @@ insert_and_read_back_as_json(_) ->
     Recs = emysql_util:as_json(Result),
 
     % find this output by clicking on the test name, then case name in test/index.html
-    log4erl:debug("~p~n", [Recs]),
+    %log4erl:debug("~p~n", [Recs]),
 
     % the test
     Recs = [[{<<"hello_text">>,<<"Hello World!">>}]],

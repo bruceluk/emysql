@@ -14,21 +14,21 @@ main([]) ->
     crypto:start(),
 
 	Filename = "include/crypto_compat.hrl",
-	log4erl:debug("Generating ~p ...~n", [Filename]),
+	%log4erl:debug("Generating ~p ...~n", [Filename]),
 
 	case erlang:function_exported(crypto, hash, 2) of
         true ->
             HASH_SHA = "crypto:hash(sha, Data)",
             HASH_FINAL = "crypto:hash_final(Data)",
             HASH_UPDATE = "crypto:hash_update(Data, Salt)",
-            HASH_INIT = "crypto:hash_init(sha)",
-            log4erl:debug("...supports cryto:hash/2~n");
+            HASH_INIT = "crypto:hash_init(sha)";
+            %log4erl:debug("...supports cryto:hash/2~n");
         false ->
             HASH_SHA = "crypto:sha(Data)",
             HASH_FINAL = "crypto:sha_final(Data)",
             HASH_UPDATE = "crypto:sha_update(Data, Salt)",
-            HASH_INIT = "crypto:sha_init()",
-            log4erl:debug("...does not support crypto:hash/2. Using crypto:sha/1~n")
+            HASH_INIT = "crypto:sha_init()"
+            %log4erl:debug("...does not support crypto:hash/2. Using crypto:sha/1~n")
     end,
 
 	Contents = [
@@ -42,8 +42,9 @@ main([]) ->
     ContentsBin = iolist_to_binary(Contents),
     case file:read_file(Filename) of
         {ok, ContentsBin} -> 
-            log4erl:debug("...no changes needed to ~p. Skipping writing new file~n", [Filename]);
+            %log4erl:debug("...no changes needed to ~p. Skipping writing new file~n", [Filename]);
+            ok;
         _ -> 
-            log4erl:debug("...writing ~p~n", [Filename]),
+            %log4erl:debug("...writing ~p~n", [Filename]),
             file:write_file(Filename, Contents)
     end.
